@@ -12,10 +12,10 @@ struct FComplex : public FTableRowBase
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float real;
+	float re;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float imaginary;
+	float im;
 
 };
 
@@ -34,18 +34,18 @@ struct FWaveFrequenciesDataStruct : public FTableRowBase
     GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FEncapsule> frequencies_this_frame;
+	TArray<FEncapsule> f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float step_size;
+	float step;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int number_of_frequencies_to_include;
+	int num_of_f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int number_of_rows_to_include;
+	int num_of_r;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int len_x;
+	int l_x;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int len_y;
+	int l_y;
 };
 
 
