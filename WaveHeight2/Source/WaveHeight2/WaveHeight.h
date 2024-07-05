@@ -7,11 +7,25 @@
 #include "WaveHeight.generated.h"
 
 USTRUCT(BlueprintType)
+struct FComplex : public FTableRowBase
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float real;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float imaginary;
+
+};
+
+
+USTRUCT(BlueprintType)
 struct FEncapsule : public FTableRowBase
 {
 	GENERATED_BODY()
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<float> arr = {1.0,2.1};
+	TArray<FComplex> arr;
 };
 
 USTRUCT(BlueprintType)
@@ -20,7 +34,18 @@ struct FWaveFrequenciesDataStruct : public FTableRowBase
     GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FEncapsule> arr2;
+	TArray<FEncapsule> frequencies_this_frame;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float step_size;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int number_of_frequencies_to_include;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int number_of_rows_to_include;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int len_x;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int len_y;
 };
 
 
