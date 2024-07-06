@@ -16,8 +16,13 @@ void AWaveHeight::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp, Warning, TEXT("----------------------------------------::: Hello, World!"));
-	
-	
+
+	// Get a row from the data table
+	 FWaveFrequenciesDataStruct* Item = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_752", "");
+	 if(Item){
+		float real = Item->f[0].arr[0].re;
+	 	UE_LOG(LogTemp, Warning, TEXT("The 0,0 real float value is: %f"), real);
+	 }
 }
 
 // Called every frame

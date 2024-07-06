@@ -57,6 +57,9 @@ class WAVEHEIGHT2_API AWaveHeight : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AWaveHeight();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,  meta=(RowType ="FWaveFrequenciesDataStruct"))
+	class UDataTable* waveData;
+	
 
 protected:
 	// Called when the game starts or when spawned
