@@ -46,6 +46,10 @@ public:
 	int l_x;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int l_y;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int st_y;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int st_x;
 };
 
 

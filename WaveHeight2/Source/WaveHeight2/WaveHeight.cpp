@@ -48,7 +48,7 @@ double ifft2(int x, int y, const TArray<FEncapsule>& fourierCoefficients, int le
 AWaveHeight::AWaveHeight()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	//PrimaryActorTick.bCanEverTick = true;
 
 }
 
@@ -60,20 +60,7 @@ void AWaveHeight::BeginPlay()
 	/***
 	 * Call the ifft2 with example data
 	 */
-	// Example usage
-   /*  ComplexMatrix fourierCoefficients = {
-        {Complex(1, 1), Complex(1, -1)},
-        {Complex(-1, 1), Complex(-1, -1)}
-    };
-
-    int lenX = 4;
-    int lenY = 4;
-
-    double result2 = ifft2(1, 1, fourierCoefficients, lenX, lenY);
-	UE_LOG(LogTemp, Warning, TEXT("The result from the ifft2 function is: %f"), result2); */
-	/** */
-
-	// Get a row from the data table
+	// TODO: this should be exposed in a function, callable from blueprint instead of in the beginPlay function.
 	 FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_752", "");
 	 if(Row)
 	 {	
