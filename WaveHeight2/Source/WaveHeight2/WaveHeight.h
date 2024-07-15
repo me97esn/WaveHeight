@@ -36,9 +36,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float step_size;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int num_of_frequencies_to_include;
+	int number_of_frequencies_to_include;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int num_of_rows_to_include;
+	int number_of_rows_to_include;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int len_x;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
