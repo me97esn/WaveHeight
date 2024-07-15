@@ -62,12 +62,12 @@ void AWaveHeight::BeginPlay()
 	 */
 	// TODO: this should be exposed in a function, callable from blueprint instead of in the beginPlay function.
 	 FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_752", "");
-	 if(Row)
-	 {	
-		float height = ifft2(1,1, Row->f,Row->l_x, Row->l_y, Row->num_of_f, Row->num_of_r);
-		//float real = Item->f[0].arr[0].re;
-	 	UE_LOG(LogTemp, Warning, TEXT("The 0,0 real float value from the ifft2 of the data table is: %f"), height);
-	 }
+	//  if(Row)
+	//  {	
+	// 	float height = ifft2(1,1, Row->f,Row->l_x, Row->l_y, Row->num_of_f, Row->num_of_r);
+	// 	//float real = Item->f[0].arr[0].re;
+	//  	UE_LOG(LogTemp, Warning, TEXT("The 0,0 real float value from the ifft2 of the data table is: %f"), height);
+	//  }
 }
 
 // Called every frame

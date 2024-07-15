@@ -29,27 +29,33 @@ struct FEncapsule : public FTableRowBase
 };
 
 USTRUCT(BlueprintType)
+struct FWaveFrequenciesMetadataStruct : public FTableRowBase
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float step_size;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int num_of_frequencies_to_include;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int num_of_rows_to_include;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int len_x;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int len_y;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int start_trace_y;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int start_trace_x;
+};
+
+USTRUCT(BlueprintType)
 struct FWaveFrequenciesDataStruct : public FTableRowBase
 {
     GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<FEncapsule> f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float step;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int num_of_f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int num_of_r;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int l_x;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int l_y;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int st_y;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int st_x;
 };
 
 
