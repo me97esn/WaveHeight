@@ -14,26 +14,29 @@ using Complex = complex<double>;
 using ComplexMatrix = vector<vector<Complex>>;
 
 double AWaveHeight::calculateWaveHeight(
-    int x, 
-    int y, 
-    int frame_number) {
-    
-    FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_"+frame_number, "");
+    int sampleNumberX, 
+    int sampleNumberY, 
+    FName rowName) {
+    FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>(rowName, "");
     FWaveFrequenciesMetadataStruct* MetadataRow = waveMetadata->FindRow<FWaveFrequenciesMetadataStruct>("Metadata", "");
 
+    if(!Row || ! MetadataRow)
+	{
+        UE_LOG(LogTemp, Warning, TEXT("Could not find any wave data or metadata "));
+        return 0.0;
+    }
+    int x = sampleNumberX;
+    int y = sampleNumberY;
     int lenX = MetadataRow->len_x;
     int lenY = MetadataRow->len_y;
     int numberOfRowsToIncludeTop = MetadataRow->number_of_rows_to_include;
     int numberOfRowsToIncludeBottom = MetadataRow->number_of_rows_to_include;
     int numberOfFrequenciesToInclude = MetadataRow->number_of_frequencies_to_include;
 
-	if(!Row || ! MetadataRow)
-	{
-        UE_LOG(LogTemp, Warning, TEXT("Could not find any wave data or metadata for frame: %i"), frame_number);
-        return 0.0;
-    }
-    const TArray<FEncapsule>& fourierCoefficients = Row->f;
+    UE_LOG(LogTemp, Warning, TEXT("lenX: %i"), lenX);
+    UE_LOG(LogTemp, Warning, TEXT("lenY: %i"), lenY);
 
+    const TArray<FEncapsule>& fourierCoefficients = Row->f;
 
     Complex result(0.0, 0.0);
     int number_to_skip = lenY - numberOfFrequenciesToInclude * 2;

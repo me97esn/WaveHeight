@@ -74,9 +74,11 @@ public:
 	class UDataTable* waveMetadata;
 
 	UFUNCTION(BlueprintCallable, Category="Waves")
-	double calculateWaveHeight(int x, 
-		int y, 
-		int frame_number);
+	double calculateWaveHeight(
+		// These are sampling coordinates, not world coordinates
+		int sampleNumberX, 
+		int sampleNumberY, 
+		FName rowName);
 
 protected:
 	// Called when the game starts or when spawned
