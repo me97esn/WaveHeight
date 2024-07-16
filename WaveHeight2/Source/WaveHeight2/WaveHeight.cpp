@@ -33,11 +33,11 @@ double AWaveHeight::calculateWaveHeight(
     int numberOfRowsToIncludeBottom = MetadataRow->number_of_rows_to_include;
     int numberOfFrequenciesToInclude = MetadataRow->number_of_frequencies_to_include;
 
-    UE_LOG(LogTemp, Warning, TEXT("lenX: %i"), lenX);
-    UE_LOG(LogTemp, Warning, TEXT("lenY: %i"), lenY);
-    UE_LOG(LogTemp, Warning, TEXT("numberOfFrequenciesToInclude: %i"), numberOfFrequenciesToInclude);
-    UE_LOG(LogTemp, Warning, TEXT("numberOfFrequenciesToInclude: %i"), numberOfRowsToIncludeBottom);
-    UE_LOG(LogTemp, Warning, TEXT("numberOfRowsToIncludeTop: %i"), numberOfRowsToIncludeTop);
+    // UE_LOG(LogTemp, Warning, TEXT("lenX: %i"), lenX);
+    // UE_LOG(LogTemp, Warning, TEXT("lenY: %i"), lenY);
+    // UE_LOG(LogTemp, Warning, TEXT("numberOfFrequenciesToInclude: %i"), numberOfFrequenciesToInclude);
+    // UE_LOG(LogTemp, Warning, TEXT("numberOfFrequenciesToInclude: %i"), numberOfRowsToIncludeBottom);
+    // UE_LOG(LogTemp, Warning, TEXT("numberOfRowsToIncludeTop: %i"), numberOfRowsToIncludeTop);
 
     const TArray<FEncapsule>& fourierCoefficients = Row->f;
 
@@ -46,8 +46,8 @@ double AWaveHeight::calculateWaveHeight(
     int numberOfRowsToSkip = lenX - numberOfRowsToIncludeBottom * 2;
     int numRows = fourierCoefficients.Num();
     int numCols = fourierCoefficients[0].arr.Num();
-    UE_LOG(LogTemp, Warning, TEXT("numOfRows: %i"), numRows);
-    UE_LOG(LogTemp, Warning, TEXT("numOfCols: %i"), numCols);
+    // UE_LOG(LogTemp, Warning, TEXT("numOfRows: %i"), numRows);
+    // UE_LOG(LogTemp, Warning, TEXT("numOfCols: %i"), numCols);
     for (int m = 0; m < numRows; ++m) {
         int _m;
         if (m < numberOfRowsToIncludeBottom) {
