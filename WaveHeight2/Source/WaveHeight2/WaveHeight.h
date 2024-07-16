@@ -69,7 +69,14 @@ public:
 	AWaveHeight();
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,  meta=(RowType ="FWaveFrequenciesDataStruct"))
 	class UDataTable* waveData;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite,  meta=(RowType ="FWaveFrequenciesMetadataStruct"))
+	class UDataTable* waveMetadata;
+
+	UFUNCTION(BlueprintCallable, Category="Waves")
+	double calculateWaveHeight(int x, 
+		int y, 
+		int frame_number);
 
 protected:
 	// Called when the game starts or when spawned

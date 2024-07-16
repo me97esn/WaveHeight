@@ -13,7 +13,28 @@ using namespace std;
 using Complex = complex<double>;
 using ComplexMatrix = vector<vector<Complex>>;
 
-double ifft2(int x, int y, const TArray<FEncapsule>& fourierCoefficients, int lenX, int lenY, int numberOfFrequenciesToInclude = 30, int numberOfRowsToIncludeBottom = 2, int numberOfRowsToIncludeTop = 10) {
+double AWaveHeight::calculateWaveHeight(
+    int x, 
+    int y, 
+    int frame_number) {
+    
+    FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_"+frame_number, "");
+    FWaveFrequenciesMetadataStruct* MetadataRow = waveMetadata->FindRow<FWaveFrequenciesMetadataStruct>("Metadata", "");
+
+    int lenX = MetadataRow->len_x;
+    int lenY = MetadataRow->len_y;
+    int numberOfRowsToIncludeTop = MetadataRow->number_of_rows_to_include;
+    int numberOfRowsToIncludeBottom = MetadataRow->number_of_rows_to_include;
+    int numberOfFrequenciesToInclude = MetadataRow->number_of_frequencies_to_include;
+
+	if(!Row || ! MetadataRow)
+	{
+        UE_LOG(LogTemp, Warning, TEXT("Could not find any wave data or metadata for frame: %i"), frame_number);
+        return 0.0;
+    }
+    const TArray<FEncapsule>& fourierCoefficients = Row->f;
+
+
     Complex result(0.0, 0.0);
     int number_to_skip = lenY - numberOfFrequenciesToInclude * 2;
     int numberOfRowsToSkip = lenX - numberOfRowsToIncludeBottom * 2;
@@ -61,7 +82,7 @@ void AWaveHeight::BeginPlay()
 	 * Call the ifft2 with example data
 	 */
 	// TODO: this should be exposed in a function, callable from blueprint instead of in the beginPlay function.
-	 FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_752", "");
+	// FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>("Frame_752", "");
 	//  if(Row)
 	//  {	
 	// 	float height = ifft2(1,1, Row->f,Row->l_x, Row->l_y, Row->num_of_f, Row->num_of_r);
