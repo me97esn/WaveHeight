@@ -1,10 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+using namespace std;
+#include <utility>
+#include <tuple>
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "WaveHeight.generated.h"
+
 
 USTRUCT(BlueprintType)
 struct FComplex : public FTableRowBase
@@ -74,11 +77,15 @@ public:
 	class UDataTable* waveMetadata;
 
 	UFUNCTION(BlueprintCallable, Category="Waves")
+	double waveHeight(float x, float y, FName rowName);
+
 	double calculateWaveHeight(
 		// These are sampling coordinates, not world coordinates
-		int sampleNumberX, 
-		int sampleNumberY, 
+		float sampleNumberX, 
+		float sampleNumberY, 
 		FName rowName);
+
+	tuple<float,float> convertCoordToSampleIndex(float x, float y);
 
 protected:
 	// Called when the game starts or when spawned

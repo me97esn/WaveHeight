@@ -13,9 +13,30 @@ using namespace std;
 using Complex = complex<double>;
 using ComplexMatrix = vector<vector<Complex>>;
 
+tuple<float,float> AWaveHeight::convertCoordToSampleIndex(float x, float y){
+    FWaveFrequenciesMetadataStruct* MetadataRow = waveMetadata->FindRow<FWaveFrequenciesMetadataStruct>("Metadata", "");
+    pair<float, float> result;
+    if(!MetadataRow)
+	{
+        UE_LOG(LogTemp, Warning, TEXT("Could not find metadata "));
+        // return pair;
+    }
+    
+    result.first = (x - MetadataRow->start_trace_x)/MetadataRow->step_size;
+    result.second = (y - MetadataRow->start_trace_y)/MetadataRow->step_size;
+    return result;
+}
+
+double AWaveHeight::waveHeight(float x, 
+    float y, 
+    FName rowName){
+        auto sampleIndexes = convertCoordToSampleIndex( x,y );
+        return calculateWaveHeight(get<0>(sampleIndexes), get<1>(sampleIndexes), rowName);
+    }
+
 double AWaveHeight::calculateWaveHeight(
-    int sampleNumberX, 
-    int sampleNumberY, 
+    float sampleNumberX, 
+    float sampleNumberY, 
     FName rowName) {
     FWaveFrequenciesDataStruct* Row = waveData->FindRow<FWaveFrequenciesDataStruct>(rowName, "");
     FWaveFrequenciesMetadataStruct* MetadataRow = waveMetadata->FindRow<FWaveFrequenciesMetadataStruct>("Metadata", "");
