@@ -30,6 +30,7 @@ tuple<float,float> AWaveHeight::convertCoordToSampleIndex(float x, float y){
 double AWaveHeight::waveHeight(float x, 
     float y, 
     FName rowName){
+        UE_LOG(LogTemp, Log, TEXT("Calculating wave height for coord: %f, %f"), x, y);
         auto sampleIndexes = convertCoordToSampleIndex( x,y );
         return calculateWaveHeight(get<0>(sampleIndexes), get<1>(sampleIndexes), rowName);
     }
@@ -46,6 +47,7 @@ double AWaveHeight::calculateWaveHeight(
         UE_LOG(LogTemp, Warning, TEXT("Could not find any wave data or metadata "));
         return 0.0;
     }
+    UE_LOG(LogTemp, Log, TEXT("Calculating wave height for sample: %f, %f"), sampleNumberX, sampleNumberY);
     int x = sampleNumberX;
     int y = sampleNumberY;
     int lenX = MetadataRow->len_x;
